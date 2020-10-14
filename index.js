@@ -1,7 +1,8 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineChunkHtmlPlugin = require('./utils/inlinesourceplugin')
 const removeInject = require('./utils/removeInject')
 
-const InlineTemplatePlugin = (path) => {
+const inlineTemplatePlugin = (path) => {
   return  [
     new HtmlWebpackPlugin({
       filename: 'inline.html',
@@ -24,4 +25,4 @@ const InlineTemplatePlugin = (path) => {
   ]
 }
 
-module.exports = InlineTemplatePlugin
+module.exports = inlineTemplatePlugin
