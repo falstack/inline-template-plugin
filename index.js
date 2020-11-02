@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InlineChunkHtmlPlugin = require('./utils/inlinesourceplugin')
 const removeInject = require('./utils/removeInject')
 
-const inlineTemplatePlugin = (path) => {
+const inlineTemplatePlugin = (path, config = {}) => {
   return  [
     new HtmlWebpackPlugin({
       filename: 'inline.html',
@@ -21,7 +21,7 @@ const inlineTemplatePlugin = (path) => {
         minifyURLs: true,
       },
     }),
-    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, ['.js', '.css'])
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, ['.js', '.css'], config)
   ]
 }
 
