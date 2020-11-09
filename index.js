@@ -5,7 +5,7 @@ const removeInject = require('./utils/removeInject')
 const inlineTemplatePlugin = (path, config = {}) => {
   return  [
     new HtmlWebpackPlugin({
-      filename: 'inline.html',
+      filename: config.filename || 'inline.html',
       templateContent: removeInject(path),
       inject: true,
       minify: {
@@ -21,7 +21,12 @@ const inlineTemplatePlugin = (path, config = {}) => {
         minifyURLs: true,
       },
     }),
-    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, ['.js', '.css'], config)
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, {
+      test: ['.js', '.css'],
+      replaceHttpToHttps: true,
+      replaceImagePrefix: '',
+      ...config
+    })
   ]
 }
 
