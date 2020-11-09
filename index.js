@@ -8,7 +8,7 @@ const inlineTemplatePlugin = (path, config = {}) => {
       filename: config.filename || 'inline.html',
       templateContent: removeInject(path),
       inject: true,
-      minify: config.minify ? {
+      minify: config.unzip ? false : {
         removeComments: true,
         collapseWhitespace: true,
         removeRedundantAttributes: true,
@@ -19,7 +19,7 @@ const inlineTemplatePlugin = (path, config = {}) => {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
-      } : false,
+      }
     }),
     new InlineChunkHtmlPlugin(HtmlWebpackPlugin, {
       test: ['.js', '.css'],
