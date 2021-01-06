@@ -94,7 +94,7 @@ class InlineChunkHtmlPlugin {
         jsParts.push('"' + fullUrl + '"')
         lastIndex = item.end
 
-        this.images.add(fullUrl)
+        this.images.add(fullUrl.replace(`${this.config.replaceImagePrefix}:`, 'https:'))
       })
 
       jsParts.push(source.substring(lastIndex))
@@ -137,7 +137,7 @@ class InlineChunkHtmlPlugin {
         const urlMatch = styleStr.match(/url\(['"]?([^"')]+)['"]?\)/i)
         if (urlMatch && urlMatch[1]) {
           // console.log('condition-4：', urlMatch[1])
-          this.images.add(urlMatch[1])
+          this.images.add(urlMatch[1].replace(`${this.config.replaceImagePrefix}:`, 'https:'))
         }
       }
     })
